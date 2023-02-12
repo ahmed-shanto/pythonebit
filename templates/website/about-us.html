@@ -1,0 +1,116 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+     <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area shadow dark bg-cover text-center text-light" style="background-image: url({% static 'img/services.png' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>About The Brand</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li>About us</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Star About Area
+    ============================================= -->
+    <div id="about" class="about-area bg-gray default-padding">
+        <!-- Shape -->
+        <div class="fixed-shape-left">
+            <img src="{% static 'img/shape/9.png' %}" alt="Shape">
+        </div>
+        <!-- End Shape -->
+        <div class="container">
+            <div class="about-items">
+                <div class="row align-center">
+                    <div class="col-lg-6">
+                        <div class="thumb">
+                            <img class="wow fadeInLeft" data-wow-delay="300ms" src="/{{homesetting.last.aboutbanner}}" alt="Thumb" style="height:100%; width:100%;">
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-6 info wow fadeInRight" >
+                        <!-- <h4>Story about us</h4> -->
+
+                        <h2>{{homesetting.last.abouttitle}}</h2>
+                      
+         
+                      
+                      <p>{{homesetting.last.aboutdesc}}</p></p>
+                        
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About Area -->
+
+    <!-- Start Fun Factor Area
+    ============================================= -->
+    <div class="fun-factor-area relative text-light">
+        <div class="half-bg-top-gray"></div>
+        <div class="container">
+            <div class="fun-fact-items text-center">
+                <h1 style="padding-bottom: 20px;">Values</h1>
+                <div class="row">
+                    {% for i in about %}
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="medium" style="color: #202942; font-size: 20px; padding-bottom: 20px;">{{i.valuename}}</div>
+
+                            <p>{{i.valuedesc}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Fun Factor Area -->
+                  
+    <!-- Start Choose Us Area 
+    ============================================= -->
+    <div class="choose-us-area default-padding-top default-padding-bottom bg-gray">
+        <div class="container">
+            <div class="row align-center">
+                <!-- <div class="col-lg-6 thumb">
+                    <img src="assets/img/illustration/2.png" alt="dashboard">
+                </div> -->
+                
+                <div class="col-lg-6 info">
+                    <div class="item-box">
+                        <!-- <h4>Why Choose us</h4> -->
+                        <h2>Vision</h2>
+                        <p>
+                            {{homesetting.first.aboutvision}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 info">
+                    <div class="item-box">
+                        <!-- <h4>Why Choose us</h4> -->
+                        <h2>Mission</h2>
+                        <p>
+                            {{homesetting.first.aboutmission}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Choose Us Area -->
+
+    <!-- Chose Us -->
+
+    
+
+    <!-- End Choose Us -->
+    {% endblock %}

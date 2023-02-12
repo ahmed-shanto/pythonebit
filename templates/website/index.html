@@ -1,0 +1,334 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+    <!-- Start Banner 
+    ============================================= -->
+    <div class="banner-area banner-style-three text-light text-default"
+        style="background-image: url('{{ homesetting.last.shape }}');">
+        <div class="shape-left" style="background-image: url({% static 'img/shape/26.png' %});"></div>
+        <div class="container">
+            <div class="double-items">
+                <div class="row align-center">
+                  
+                    <div class="col-lg-6 info">
+                        <h2 class="wow fadeInRight" data-wow-defaul="300ms">{{homesetting.last.title1}}
+                        </h2>            
+                        <p class="wow fadeInLeft" data-wow-delay="500ms">
+                            {{homesetting.last.title2}}
+                        </p>
+                        <!-- <a class="btn btn-md circle btn-light effect wow fadeInUp" data-wow-delay="700ms" href="#">Get Started <i class="fas fa-angle-right"></i></a> -->
+                    </div>
+                    
+                   
+
+                    <div class="col-lg-6 thumb wow fadeInRight" data-wow-delay="900ms">
+
+                        <img src="/{{homesetting.last.banner}}"  alt="Thumb">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+
+    <!-- Star Clients Area
+    ============================================= -->
+    <div class="clients-style-one-area default-padding text-center">
+        <div class="container">
+            <div class="clients-style-one-box">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Over <strong>{{client.count}}+</strong> client all over the world</h3>
+                    
+                        <div  class="partner-carousel owl-carousel owl-theme">
+                            {% for i in client  %}
+                            <img src="/{{i.clientlogo}}"   alt="Partner">
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Clients -->
+
+    <!-- Star About Area
+    ============================================= -->
+    <div id="about" class="about-area bg-gray default-padding">
+        <!-- Shape -->
+        <div class="fixed-shape-left">
+            <img src="{% static 'img/shape/9.png' %}" alt="Shape">
+        </div>
+        <!-- End Shape -->
+        <div class="container">
+            <div class="about-items">
+                <div class="row align-center">
+                    <div class="col-lg-6">
+                        <div class="thumb">
+                            <img class="wow fadeInLeft" data-wow-delay="300ms" src="/{{homesetting.last.storyaboutusbanner1}}"
+                                alt="Thumb" style="height:100%;width:100%;">
+                            <img class="wow fadeInUp" data-wow-delay="500ms" src="/{{homesetting.last.storyaboutusbanner2}}"
+                                alt="Thumb" style="height:100%;width:50%;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 info wow fadeInRight">
+                        <h4>Story about us</h4>
+                        <h2>{{homesetting.last.storyaboutustitle}}</h2>
+                        <ul>
+                            <li>
+                                <h5>{{homesetting.last.storyaboutusitem1}}</h5>
+                               
+                                <p>
+                                    {{homesetting.last.storyaboutusdesc1}}
+                                </p>
+                            </li>
+                             <li>
+                                <h5>{{homesetting.last.storyaboutusitem2}}</h5>
+                               
+                                <p>
+                                    {{homesetting.last.storyaboutusdesc2}}
+                                </p>
+                            </li>
+                    
+                        </ul>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About Area -->
+
+    <!-- Star Subscribe Area
+    ============================================= -->
+    <div class="subscribe-area text-center text-light relative">
+        <div class="half-bg-top-gray"></div>
+        <div class="container">
+            <div class="subscribe-items">
+                <i class="flaticon-email"></i>
+                <!-- Shape -->
+                <div class="fixed-shape-bottom">
+                    <img src="{% static 'img/shape/14.png' %}" alt="Shape">
+                </div>
+                <!-- End Shape -->
+                <div class="row align-center">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h2>{{homesetting.last.singuptitle}}</h2>
+                        <p>
+                            {{homesetting.last.signupdesc}}
+                        </p>
+                        <form method="POST" class="form" id="form">
+                            {% csrf_token %}
+                            <input type="email" placeholder="Your Email" class="form-control" id="email" name="email" required>
+                            <button  type="submit" name="submit" id="submit"> Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Subscribe Area -->
+
+    <!-- Start Features
+    ============================================= -->
+    <div id="features" class="our-features-area default-padding bottom-less">
+        <!-- Fixed BG -->
+        <div class="fixed-bg" style="background-image: url({% static 'img/shape/17.png' %});"></div>
+        <!-- Fixed BG -->
+        <div class="container">
+            <div class="feature-items">
+                <div class="row">
+                    <!-- Single Item -->
+                    <div class="single-item col-lg-4 col-md-6">
+                        <div class="item service-banner" style="background-image: url({% static 'img/800x800.png' %});">
+                            <h4>Our Features</h4>
+                            <h2>{{homesetting.last.featuretitle}}</h2>
+                            <a class="btn circlex btn-sm" href="#"></a>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    {% for i in features %}
+                    <div class="single-item col-lg-4 col-md-6">
+                        <div class="item">
+                            <div class="icon">
+                                <i class="{{i.icon}}"></i>
+                            </div>
+                            
+                            <div class="info">
+                                <h4><a href="#">{{i.name}}</a></h4>
+                                <p>
+                                    {{i.shortdesc|safe | truncatewords:20}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Our Features -->
+
+    <!-- Start Choose Us Area 
+    ============================================= -->
+    <div class="choose-us-area default-padding bg-gray">
+        <div class="container">
+            <div class="row align-center">
+                <div class="col-lg-6 thumb">
+                    <img src="{% static 'img/illustration/2.png' %}" alt="dashboard">
+                </div>
+
+                <div class="col-lg-6 info">
+                    <div class="item-box">
+                        <h4>Why Choose us</h4>
+                        <h2>{{homesetting.last.chooseustitle}}</h2>
+                        <p>
+                            {{homesetting.last.chooseusdesc}}
+                        </p>
+                        <ul>
+                            <li>
+                                <i class="fas fa-layer-group"></i>
+                                <h5>Friendly Interface</h5>
+                            </li>
+                            <li>
+                                <i class="fas fa-fingerprint"></i>
+                                <h5>Strong Encryption</h5>
+                            </li>
+                        </ul>
+                        <div class="progress-box">
+                            <h5>Success Rate</h5>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-width="{{homesetting.last.sucessrate}}">
+                                    <span>{{homesetting.last.sucessrate}}%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Choose Us Area -->
+
+    <!-- Start Fun Factor Area
+    ============================================= -->
+    <div class="fun-factor-area relative text-light">
+        <div class="half-bg-top-gray"></div>
+        <div class="container">
+            <div class="fun-fact-items text-center">
+                <div class="row">
+                    {% for i in user %}
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="timer"data-to="{{i.number}}" data-speed="5000">{{i.number}}</div>
+                            <span class="medium">{{i.name}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Fun Factor Area -->
+
+    <!-- Start Blog 
+    ============================================= -->
+    <div id="blog" class="blog-area default-padding bg-gray bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="site-heading text-center">
+                        <h2>Latest News</h2>
+                        <div class="devider"></div>
+                        <p>
+                            <!-- Outlived no dwelling denoting in peculiar as he believed. Behaviour excellent middleton be as it curiosity departure ourselves very extreme future.  -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
+
+
+                
+                <!-- Single item -->
+                
+                <div class="single-item col-lg-4 col-md-6">
+                   
+                       
+                        <div class="info">
+                           
+                     
+                        </div>
+                   
+                </div>
+               
+                <!-- End Single item -->
+
+
+                <!-- Single item -->
+                {% for i in news %}
+                
+                <div class="single-item col-lg-4 col-md-6">
+                    <div class="item">
+                        <div class="thumb">
+                            <a href="{{i.link}}" target="blank"><img src="/{{i.photo}}"alt="Thumb"></a>
+                            <div class="date"><strong>{{i.dateyear}}</strong> <span>{{i.month}}</span></div>
+                        </div>
+                        <div class="info">
+                            <div class="meta"></div>
+                            <h4>
+                                <a href="{{i.link}}" target="blank">{{i.title}} </a>
+                            </h4>
+                            <p>
+                               {{i.shortdesc|safe | truncatewords:40}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- End Single item -->
+
+            </div>
+        </div>
+    </div>
+    <!-- End Blog -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $(document).on('submit','#form', function(e){
+            var email = $('#email').val()
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: " ",
+                data:{
+                    email:email,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),     
+                },
+                success: function(data) {
+                    swal("Thanks For Subscribing!", "Soon Our Marketing Team Will Reach You!", "success")
+                    $("#email").val("");
+                    
+                
+                }
+        })
+
+    })
+
+    </script>
+
+
+
+
+
+    {% endblock %}

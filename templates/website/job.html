@@ -1,0 +1,134 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+
+     <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area shadow dark bg-cover text-center text-light" style="background-image: url({% static 'img/apply1.png' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>Apply Now</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li>Career</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Contact Area 
+    ============================================= -->
+    <div id="contact" class="contact-area default-padding">
+        <div class="container">
+            <div class="contact-content">
+                <!-- <div class="shape">
+                    <img src="assets/img/illustration/contact.png" alt="illustration">
+                </div> -->
+                <div class="row">
+                    <div class="col-lg-6 info">
+                        <div class="content">
+                            <ul>                               
+                                <li>
+                                    <div class="info">
+                                        <h5 style="font-size: 40px;">{{jobs.jobname}}</h5>
+                                        <br>
+                                        <p>
+                                            {{jobs.jobdesc| safe}} 
+                                        </p>
+                                    </div>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 contact-form-box">
+                        <div class="form-box">
+                            <br>
+                        
+                            <h2>Apply For This Position</h2>
+                                
+            
+                            <br>
+                            <form method="POST" class="job-form"  id="job-form" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                                            <span class="alert-error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                                            <span class="alert-error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" id="phone" name="phone" placeholder="Phone" type="text" required>
+                                            <span class="alert-error"></span>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <h5>Upload CV/Resume </h5>
+                                            <input class="form-control" type="file" id="resume" name="resume" required accept=".pdf, .docx, .doc">
+                                            
+                                            <span class="alert-error"> Allowed Type(s): .pdf or .docx</span>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button type="submit" name="submit" id="submit">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
+     <script>
+        $(document).ready(function () {
+            $('#job-form').on('submit', function (event) {
+              event.preventDefault();
+              var formData = new FormData($('#job-form')[0]);
+              $.ajax({
+                url: '/jobs/{{jobs.id}}/',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    swal("Your Message Sent Successfully!", "Soon We Will Reach You!", "success")
+                    $("#job-form")[0].reset();
+                }
+              });
+            });
+          });
+          
+         </script>     
+   
+     
+
+    {% endblock %}

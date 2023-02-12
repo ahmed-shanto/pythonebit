@@ -1,0 +1,89 @@
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+    {% load  template_tag %}
+
+    <!-- Start Breadcrumb 
+    ============================================= -->
+    
+    <div class="breadcrumb-area shadow dark bg-cover text-center text-light"
+        style="background-image: url({% static 'img/project.png' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>{{name}}</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li>Projects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+         
+    <!-- Star Services Details Area
+    ============================================= -->
+    <div class="services-details-area default-padding">
+        <div class="container">
+            <div class="services-details-items">
+                <div class="row">
+                    
+                    <div class="col-lg-8 services-single-content">
+                        <div class="thumb text-center">
+                      <img src="/{{description.first.photo}}" alt="Thumb" style="width:80%;height:80%;">
+                         </div>
+                       
+                        <h2 style="text-transform: capitalize;">{{name}}</h2>
+                        {% for d in description %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="content">
+                                
+                              
+                                <p>
+                                    {{d.description | safe}}
+                                </p>                                        
+                                
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-lg-4 services-sidebar">
+                        <!-- Single Widget -->
+                        <div class="single-widget services-list">
+                            <h4 class="widget-title">Projects List</h4>
+                            <div class="content">
+                                {% for m in recent_modules %}
+                                <ul>
+                                    <li><a href="{% url 'module' m.name|str2url|lower %}">{{m}}</a></li>
+                                </ul>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- End Single Widget -->
+                        <div class="single-widget quick-contact text-light"
+                            style="background-image: url(assets/img/800x800.png);">
+                            <div class="content">
+                                <i class="fas fa-phone"></i>
+                                <h4>Need any help?</h4>
+                                <p>
+                                    We are here to help our customer any time. You can call on 24/7 To Answer Your
+                                    Question.
+                                </p>
+                                <h2>(880) 1313420013</h2>
+                            </div>
+                        </div>
+                        <!-- Single Widget -->
+
+                        <!-- End Single Widget -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Services Details Area -->
+    {% endblock %}
+
+   

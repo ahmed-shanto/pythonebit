@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% load  template_tag %}
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="E-BIT">
+
+    <!-- ========== Page Title ========== -->
+    <title>E-BIT</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link onmousemove="text" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/themify-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/elegant-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/validnavs.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+    <style>
+
+
+    </style>
+
+    {% comment %} from other source {% endcomment %}
+
+    <meta name="facebook-domain-verification" content="j4dudqgbqgs79noaltndt5a0sxgxgl" />
+
+    <!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '926400462059223');
+  </script>
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W64CDXJ');</script>
+    <!-- End Google Tag Manager →
+    
+
+  
+
+    {% comment %} end other source {% endcomment %}
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div class="se-pre-con"></div>
+    <!-- Preloader Ends -->
+
+    <!-- Header 
+    ============================================= -->
+    <header>
+        <!-- Start Navigation -->
+        <nav class="navbar mobile-sidenav attr-border navbar-sticky navbar-default validnavs navbar-fixed white no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        {% for data in head_foot|head_foots|slice:"1" %}
+                        <img src="/{{data.logo}}"class="logo logo-display" alt="Logo">
+                        
+                        <img src="/{{data.logo}}" class="logo logo-scrolled" alt="Logo">
+                        {% endfor %}
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+ <!-- Main Nav -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-menu">
+        {% for data in head_foot|head_foots|slice:"1" %}
+        <img src="/{{data.logo}}"alt="Logo">
+        {% endfor %}
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+            <i class="fa fa-times"></i>
+        </button>
+        
+        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+            <li><a href="{% url 'about_us' %}">Who We Are</a></li>
+
+        <li class="dropdown">
+            <a href="{% url 'projects' %}"class="dropdown-toggle" data-toggle="dropdown" >Product</a>
+            <ul class="dropdown-menu">
+                {% for i in solutionstandard %}
+                <li class="dropdown">
+                    <a href="{% url 'projects' %}" class="dropdown-toggle" data-toggle="dropdown" >{{i.name}}</a>
+                    <ul class="dropdown-menu">
+                        {% for p in i.Projects.all %}
+                        <li class="dropdown">
+                            <a href="{% url 'projects' %}" class="dropdown-toggle" data-toggle="dropdown" >{{p.name}}</a>
+                            
+                            <ul class="dropdown-menu">
+                                {% for m in p.modules.all %}
+                                <li><a href="{% url 'module' m.name|str2url|lower %}">{{m.name}}</a></li>
+                                {% endfor %}
+                            </ul>
+                            
+                        </li>  
+                        {% endfor %}                                      
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+            <li><a href="{% url 'career' %}">career</a></li>
+            <li><a href="{% url 'contact' %}">contact</a></li>
+            <!-- <li><a href="{% url 'projects' %}">Projects</a></li> -->
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+    
+    <div class="attr-right" >
+        <!-- Start Atribute Navigation -->
+        <div class="attr-nav">
+            <ul>
+                <li class="button" ><a href="{% url 'projects'  %}" style="background: #0fcfb7 !important;" href="#">Our Projects</a></li>
+            </ul>
+        </div>
+        <!-- End Atribute Navigation -->
+    </div>
+
+</div>
+<!-- Main Nav -->
+</div>
+</nav>
+<!-- End Navigation -->
+</header>
+<!-- End Header -->
+
+    {% block body %}
+    {% endblock %}
+    
+    
+    <!-- Start Footer 
+    ============================================= -->
+    <footer class="bg-dark text-light">
+        <div class="container">
+            <div class="f-items default-padding">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 item">
+                        
+                        <div class="f-item about">
+                            {% for data in head_foot|head_foots|slice:"1" %}
+                                <img src="/{{data.logo}}" alt="Logo">
+                                    
+                                {% endfor %}
+                            
+                            <p>
+                                {% for data in head_foot|head_foots|slice:"1" %}
+                                    {{data.logodesc}}
+                                {% endfor %}
+                                
+                            </p>
+                            <form method="POST" class="email_form" id="email_form">{% csrf_token %}
+                                <input type="email" placeholder="Your Email" class="form-control" id="cemail" name="email" required>
+                                <button type="submit"> <i class="arrow_right"></i></button>
+                            </form>
+                            {% comment %} Social Icon Start {% endcomment %}
+
+                          
+                                <!-- Section: Social media -->
+                                <section class="mb-4" style=" padding-top: 15%;">
+                                    <h3 style="font-size: 20px;color: #ffffff;line-height: normal;text-align: left" class="vc_custom_heading vc_custom_1574777423302">Follow Us</h3>
+                                  <!-- Facebook -->
+                                  <a
+                                    class="btn text-white btn-floating m-1"
+                                    style="background-color: #3b5998;"
+                                    href="https://www.facebook.com/ebitofficial/" target="blank"
+                                    role="button"
+                                    ><i class="fab fa-facebook-f"></i
+                                  ></a>
+
+                                 <!-- Linkedin -->
+                                 <a
+                                 class="btn text-white btn-floating m-1"
+                                 style="background-color: #0082ca;"
+                                  href="https://www.linkedin.com/company/e-bitofficial/" target="blank"
+                                  role="button"
+                                 ><i class="fab fa-linkedin-in"></i
+                                 ></a>
+                            
+                                 <!-- Instagram -->
+                                 <a
+                                 class="btn text-white btn-floating m-1"
+                                 style="background-color: #ac2bac;"
+                                 href="https://www.instagram.com/ebit.erp/" target="blank"
+                                 role="button"
+                                 ><i class="fab fa-instagram"></i
+                               ></a>
+                            
+                                  <!-- Youtube -->
+                                  <a
+                                    class="btn text-white btn-floating m-1"
+                                    style="background-color: #dd4b39;"
+                                    href="https://www.youtube.com/channel/UC6XjyFSVzNQU7b7fFjxSUkQ" target="blank"
+                                    role="button"
+                                    ><i class="fab fa-youtube"></i
+                                  ></a>
+                            
+                          
+                            
+                           
+                               
+                                </section>
+                                <!-- Section: Social media -->
+                          
+                             
+                            {% comment %} Social Icon End {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 item">
+                        <div class="f-item link" >
+                            <h4 class="widget-title">Quick LInk</h4>
+                            <ul>
+                                <li>
+                                    <a href="/"><i class="fas fa-angle-right"></i> Home</a>
+                                </li>
+                            </li>
+                            <li>
+                                <a href="{% url 'about_us' %}"><i class="fas fa-angle-right"></i> Who We Are</a>
+                            </li>
+                                <li>
+                                    <a href="{% url 'projects' %}"><i class="fas fa-angle-right"></i> Projects</a>
+                                </li>
+                            </li>
+                            <li>
+                                <a href="{% url 'career' %}"><i class="fas fa-angle-right"></i> Career</a>
+                            </li>
+                                <li>
+                                    <a href="{% url 'contact' %}"><i class="fas fa-angle-right"></i>Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="f-item contact-widget">
+                            <h4 class="widget-title">Contact Info</h4>
+                            <div class="address">
+                                <ul>
+                                    <li>
+                                        <div class="icon">
+                                            <i class="fas fa-home"></i>
+                                        </div>
+                                        <div class="content">
+                                            <strong>Address:</strong>
+                                            Esquire Tower, 5th floor,
+                                            Shaheed Tajuddin Ahmed Sarani,
+                                        Tejgaon I/A, Dhaka-1208, Bangladesh.
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div class="content">
+                                            <strong>Email:</strong>
+                                            <a href="mailto:info@e-bit.biz">info@e-bit.biz</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                        <div class="content">
+                                            <strong>Phone:</strong>
+                                            <a href="tel:01313420013">+880 1313420013</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p><a href="https://esquiretechnology.com/index.html"> © Esquire Technology Limited.</a>All
+                            Rights Reserved </p>
+                    </div>
+                    <div class="col-lg-6 text-end link"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Bottom -->
+    </footer>
+
+    <!-- fixed-logo right start -->
+  <div class="fixed-bottom">
+    <a id="scroll_button" href="http://esquiretechnology.com/" target="blank">
+        <img class="logo logo-scrolled" src="{% static '/img/logo/techonologylogo.png' %}"  alt="Esquire Technology Logo">
+    </a>
+
+  </div>
+  
+    <!-- fixed-logo right end --> 
+    
+    
+    <!-- fixed-logo left start -->
+    <!-- <div class="fixed-bottom">
+        <div class="containers">
+               <div class="floating-menu open overlays"> 
+                <button style="border-radius: 50%;">
+                    <a href="http://esquiretechnology.com/" target="blank">                        
+                        <img class="logo logo-scrolled" src="{% static '/img/logo/techonologylogo.png' %}"  alt="Esquire Technology Logo">
+                      </a>    
+                </button>                    
+                   
+                </div>
+        </div>
+    </div> -->
+     <!-- fixed-logo left end -->
+
+    
+    <!-- End Footer -->
+    
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top" >
+        <i class="fa fa-angle-up" ></i>
+    </a>
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.appear.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/modernizr.custom.13711.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/progress-bar.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/count-to.js' %}"></script>
+    <script src="{% static 'js/YTPlayer.min.js' %}"></script>
+    <script src="{% static 'js/validnavs.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script src="{% static 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+
+  
+    <script type="text/javascript">
+        $(document).on('submit','#email_form', function(e){
+            var email = $('#cemail').val()
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/get-email/",
+                data:{
+                    email:email,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),     
+                },
+                success: function(data) {
+                    swal("Thanks For Subscribing!", "Soon Our Marketing Team Will Reach You!", "success")
+                    $("#cemail").val("");
+                
+                }
+        })
+
+    })
+
+    </script>
+
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/63abc91a47425128790a64f6/1glbgj46d';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script> 
+        <!--End of Tawk.to Script-->
+   
+</body>
+
+</html>

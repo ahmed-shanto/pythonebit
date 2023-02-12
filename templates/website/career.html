@@ -1,0 +1,100 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+
+     <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area shadow dark bg-cover text-center text-light" style="background-image: url({% static 'img/carrer2.png' %}); ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>Carrer</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li>Carrer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Star About Area
+    ============================================= -->
+    <div id="about" class="about-area bg-gray default-padding">
+        <!-- Shape -->
+        <div class="fixed-shape-left">
+            <img src="assets/img/shape/9.png" alt="Shape">
+        </div>
+        <!-- End Shape -->
+        <div class="container">
+            <div class="about-items">
+                <div class="row align-top">
+                    <div class="col-lg-6">
+                        <div class="thumb">
+                            <img class="wow fadeInLeft" data-wow-delay="300ms" src="/{{homesetting.last.carrerbanner}}" alt="Thumb"style="height:100%;width:100%;">
+                            <!-- <img class="wow fadeInUp" data-wow-delay="500ms" src="assets/img/dashboard/6.png" alt="Thumb"> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 info wow fadeInRight" style="padding-bottom: ;">
+                        <!-- <h4>Story about us</h4> -->
+                        <h2>{{homesetting.last.carrertitle}}</h2>
+         
+                      
+                      <p>{{homesetting.last.carrerdesc}}</p>
+                        
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="features" class="our-features-area default-padding-bottom -less mt-0">
+
+        <!-- Fixed BG -->
+        <div class="fixed-bg mt-0" style="background-image: url('img/shape/17.png');"></div>
+        <!-- Fixed BG -->
+
+        <div class="container mt-0">
+            <div class="feature-items">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-lg-3 info text-center"></div>
+                        <div class="col-lg-6 info text-center">
+                            <h1 class="wow fadeInRight" data-wow-defaul="300ms">{{homesetting.last.carrerjobtitle}}</b></h1>
+                        </div>
+                        <div class="col-lg-3 info text-center"></div>
+                    </div>
+                    
+                    <!-- Single Item -->
+                    {% for i in jobs %}
+                    <div class="single-item col-lg-3 col-md-6">
+                        <a href="/jobs/{{i.id}}/">
+                            <div class="item" style="height:320px">
+                                <div class="info">
+                                    <h4>{{i.jobname}}</h4>
+                                    <p> {{i.shortdesc |safe | truncatewords:20}}<span class=" pl-2"> <span class=" pl-2"><i
+                                        class="ti-angle-double-right"></i></span>
+                                                
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% empty %}
+                    
+                        <h3 style="text-align: center; padding-top: 3%;">Sorry No Jobs Aviable Now</h3>
+                    
+                   
+                    {% endfor %}
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About Area -->
+
+    {% endblock %}

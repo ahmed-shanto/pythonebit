@@ -1,0 +1,156 @@
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+    <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area shadow dark bg-cover text-center text-light"
+        style="background-image:  url({% static 'img/contact.png' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>Contact Us</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Contact Area 
+    ============================================= -->
+    <div id="contact" class="contact-area default-padding">
+        <div class="container">
+            <div class="contact-content">
+                <div class="shape">
+                    <img src="{% static 'img/illustration/contact.png' %}" alt="illustration">
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 info">
+                        <div class="content">
+                            <ul>
+                                <li>
+                                    <div class="icon">
+                                        <i class="fas fa-envelope-open-text"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h5>Our Email</h5>
+                                        <a href="mailto:info@esquiretechnology.com">info@e-bit.biz</a> <br>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h5>Address</h5>
+                                        <p>
+                                            Esquire Tower, 5th floor <br> Shaheed Tajuddin Ahmed Sarani, <br> Tejgaon
+                                            I/A, Dhaka-1208, Bangladesh.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <i class="fas fa-headphones-alt"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h5>Phone</h5>
+                                        <a href="tel:+880 1313420013">+880 1313420013</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 contact-form-box">
+                        <div class="form-box">
+                            <h2>Get Into Touch</h2>
+                            <br>
+                            <form  method="POST" class="form" id="form"> 
+                                {% csrf_token %}
+                                
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" id="name" name="name" placeholder="Name"
+                                                type="text" required>
+                                            <!-- <span class="alert-error"></span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <input class="form-control" id="email" name="email" placeholder="Email"
+                                                type="email" required>
+                                            <!-- <span class="alert-error"></span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <input class="form-control" id="phone" name="phone" placeholder="Phone"
+                                                type="text" required>
+                                            <!-- <span class="alert-error"></span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group comments">
+                                            <textarea class="form-control" id="comments" name="comments"
+                                                placeholder="Message" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button type="submit" name="submit" id="submit">
+                                            Send Message
+                                        </button>  
+                                    </div>                                    
+                                </div>
+                                <!-- Alert Message -->
+                    
+                                <div class="col-lg-12 alert-notification">
+                                    <div id="message" class="alert-msg">
+                                    </div>
+
+                                </div>
+                            </form>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+          $("#form").submit(function(e){
+            e.preventDefault();
+        
+            var formData = $(this).serialize();
+        
+            $.ajax({
+              type: "POST",
+              url: "{% url 'contact' %}",
+              data: formData,
+              success: function(response){
+                swal("Your Message Sent Successfully!", "Soon Our Marketing Team Will Reach You!", "success")
+                $("#form")[0].reset();
+              },
+              error: function(response){
+                swal("Something went wrong!", "Please try again!", "error")
+                
+
+              }
+            });
+          });
+        });
+        </script>
+    {% endblock %}

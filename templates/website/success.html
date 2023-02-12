@@ -1,0 +1,31 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+
+     <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="header" style="background-color: #5A57FB; height: 100px; width: auto;">
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start 404 
+    ============================================= -->
+    <div class="error-page-area text-center default-padding">
+        <div class="container">
+            <div class="row align-center"style="background-image: url({% static 'img/shape/26.png' %});">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="error-box" style="border:500px; ">
+                        <img src="{% static '/img/icon/verified1.gif' %}" alt="logo" style="height: 150px; width: 150px; margin-bottom: 0%;" >
+                        <h3>Successful</h3>
+                        <h3>Soon We Will Reach You</h3>
+                        <!-- <p>
+                            The page you are looking for might have been removed had its name changed or its temporarily unavailable.
+                        </p> -->
+                        <a class="btn circle btn-theme-effect btn-md" href="/">Back To Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
